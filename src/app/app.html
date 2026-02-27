@@ -1,0 +1,59 @@
+<main class="container">
+  <h1>Buscador por voz (PoC)</h1>
+  <p class="subtitle"><strong>Método:</strong> Web Speech API (SpeechRecognition / webkitSpeechRecognition)</p>
+
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="query"
+      placeholder="Qué quieres hacer hoy?"
+      (keyup.enter)="runSearch()"
+    />
+
+    <button type="button" (click)="runSearch()">Buscar</button>
+    <button
+      type="button"
+      class="mic"
+      [class.active]="isListening"
+      (click)="isListening ? stopListening() : startListening()"
+      [disabled]="!isVoiceSupported"
+    >
+      {{ isListening ? 'Detener' : '🎙️ Hablar' }}
+    </button>
+  </div>
+
+  <div class="voice-indicator">
+    <span class="dot" [class.active]="isListening"></span>
+    <span>{{ isListening ? 'Micrófono activo' : 'Micrófono inactivo' }}</span>
+  </div>
+
+  <p class="status">{{ message }}</p>
+
+  @if (platformWarning) {
+    <p class="warning">{{ platformWarning }}</p>
+  }
+
+  <section class="diagnostics">
+    <div class="diagnostics-header">
+      <h2>Diagnóstico de micrófono</h2>
+      <button type="button" (click)="onDiagnoseClick()" [disabled]="isDiagnosing">
+        {{ isDiagnosing ? 'Diagnosticando...' : 'Diagnosticar' }}
+      </button>
+    </div>
+    <p class="diag-time">Última actualización: {{ lastDiagnosticsAt }}</p>
+    <ul>
+      <li>Permiso: {{ diagnostics.permissionState }}</li>
+      <li>Micrófonos detectados: {{ diagnostics.microphoneCount }}</li>
+      <li>Micrófono activo: {{ diagnostics.selectedMicrophone }}</li>
+      <li>Último error voz: {{ diagnostics.lastRecognitionError }}</li>
+      <li>Último error permiso: {{ diagnostics.lastPermissionError }}</li>
+    </ul>
+  </section>
+
+  @if (!isVoiceSupported) {
+    <p class="warning">
+      Este navegador no soporta reconocimiento de voz con Web Speech API.
+      Prueba con Chrome o Edge.
+    </p>
+  }
+</main>
