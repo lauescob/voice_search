@@ -2,6 +2,7 @@
   <h1>Buscador por voz (PoC)</h1>
   <p class="subtitle"><strong>Método:</strong> Web Speech API (SpeechRecognition / webkitSpeechRecognition)</p>
 
+
   <div class="search-box">
     <input
       type="text"
@@ -10,7 +11,6 @@
       (keyup.enter)="runSearch()"
     />
 
-    <button type="button" (click)="runSearch()">Buscar</button>
     <button
       type="button"
       class="mic"
@@ -28,10 +28,11 @@
   </div>
 
   <p class="status">{{ message }}</p>
-
+  
+<!-- 
   @if (platformWarning) {
     <p class="warning">{{ platformWarning }}</p>
-  }
+  } -->
 
   <section class="diagnostics">
     <div class="diagnostics-header">
