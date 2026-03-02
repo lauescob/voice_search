@@ -1,7 +1,9 @@
 <main class="container">
   <h1>Buscador por voz (PoC)</h1>
-  <p class="subtitle"><strong>Método:</strong> Web Speech API (SpeechRecognition / webkitSpeechRecognition)</p>
-
+  <br />
+  <p class="subtitle">
+    <strong>Método 1:</strong> Web Speech API (SpeechRecognition / webkitSpeechRecognition)
+  </p>
 
   <div class="search-box">
     <input
@@ -10,7 +12,6 @@
       placeholder="Qué quieres hacer hoy?"
       (keyup.enter)="runSearch()"
     />
-
     <button
       type="button"
       class="mic"
@@ -27,9 +28,13 @@
     <span>{{ isListening ? 'Micrófono activo' : 'Micrófono inactivo' }}</span>
   </div>
 
-  <p class="status">{{ message }}</p>
-  
-<!-- 
+  <i
+    ><p class="status">{{ message }}</p></i
+  >
+
+  <br />
+
+  <!-- 
   @if (platformWarning) {
     <p class="warning">{{ platformWarning }}</p>
   } -->
@@ -41,7 +46,9 @@
         {{ isDiagnosing ? 'Diagnosticando...' : 'Diagnosticar' }}
       </button>
     </div>
+
     <p class="diag-time">Última actualización: {{ lastDiagnosticsAt }}</p>
+
     <ul>
       <li>Permiso: {{ diagnostics.permissionState }}</li>
       <li>Micrófonos detectados: {{ diagnostics.microphoneCount }}</li>
@@ -53,8 +60,7 @@
 
   @if (!isVoiceSupported) {
     <p class="warning">
-      Este navegador no soporta reconocimiento de voz con Web Speech API.
-      Prueba con Chrome o Edge.
+      Este navegador no soporta reconocimiento de voz con Web Speech API. Prueba con Chrome o Edge.
     </p>
   }
 </main>

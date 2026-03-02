@@ -16,7 +16,18 @@ h1 {
 .search-box {
 	display: flex;
 	gap: 8px;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+.search-box input {
+	min-width: 0;
+	flex: 1 1 auto;
+}
+
+.search-box .mic {
+	flex: 0 0 auto;
+	white-space: nowrap;
 }
 
 input {
@@ -40,6 +51,8 @@ button {
 
 .status {
 	margin-top: 14px;
+	color: #000;
+	font-size: 13px;
 }
 
 .diagnostics {
